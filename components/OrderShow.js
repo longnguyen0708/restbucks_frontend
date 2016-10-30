@@ -31,6 +31,7 @@ export default class OrderShow extends React.Component {
     this.handlePayClick = this.handlePayClick.bind(this);
     this.handleUpdateClick = this.handleUpdateClick.bind(this);
     this.handleCancelClick = this.handleCancelClick.bind(this);
+      this.handleReceiptClick = this.handleReceiptClick.bind(this);
       this.onChange = this.onChange.bind(this);
 
   }
@@ -51,6 +52,11 @@ export default class OrderShow extends React.Component {
     handleCancelClick(event) {
         const orderLink = sessionStorage.getItem('orderLink');
         cancelOrder(orderLink)
+    }
+
+    handleReceiptClick(event) {
+        const path = '/receipt'
+        this.context.router.push(path)
     }
 
   componentDidMount() {
@@ -89,6 +95,7 @@ export default class OrderShow extends React.Component {
           <Button isRender={this.state.order.payment} value="Update Order" onClick={() => this.handleUpdateClick()}/>
           <Button isRender={this.state.order.payment} value="Pay" onClick={() => this.handlePayClick()}/>
           <Button isRender={this.state.order.payment} value="Cancel Order" onClick={() => this.handleCancelClick()}/>
+          <Button isRender={this.state.order.receipts} value="View Receipt" onClick={() => this.handleReceiptClick()}/>
       </div>
      );
   }

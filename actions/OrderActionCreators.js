@@ -5,6 +5,7 @@ import {getOrder} from '../utils/APIUtils.js';
 import {updateOrder} from '../utils/APIUtils.js';
 import {cancelOrder} from '../utils/APIUtils.js';
 import {payOrder} from '../utils/APIUtils.js';
+import {completeOrder} from '../utils/APIUtils.js';
 
 //var ActionTypes = AppConstants.ActionTypes;
 
@@ -36,6 +37,9 @@ module.exports = {
   },
   payOrder: function(paymentLink, card_holder_name, card_number, expiry_month, expiry_year, amount) {
     payOrder(paymentLink, card_holder_name, card_number, expiry_month, expiry_year, amount);
+  },
+  completeOrder: function(receiptLink) {
+    completeOrder(receiptLink);
   },
 };
 

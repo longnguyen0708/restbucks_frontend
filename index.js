@@ -7,6 +7,7 @@ import OrderNew from './components/OrderNew'
 import OrderShow from './components/OrderShow'
 import OrderUpdate from './components/OrderUpdate'
 import OrderPay from './components/OrderPay'
+import Receipt from './components/Receipt'
 
 render((
   <Router history={browserHistory}>
@@ -17,6 +18,7 @@ render((
         <Route path="/show_order" component={OrderShow}/>
         <Route path="/update_order" component={OrderUpdate}/>
         <Route path="/pay_order" component={OrderPay}/>
+        <Route path="/receipt" component={Receipt}/>
     </Route>
   </Router>
 ), document.getElementById('app'))
