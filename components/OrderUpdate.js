@@ -15,10 +15,10 @@ export default class OrderNew extends React.Component {
 
   constructor(props) {
     super(props);
-      const order = OrderStore.getOrder();
+    const order = OrderStore.getOrder();
     this.state = {
-      error: null,
-      location: order.location,
+        error: null,
+        location: order.location,
         name: order.name,
         quantity: order.quantity,
         milk: order.milk,
@@ -64,6 +64,9 @@ export default class OrderNew extends React.Component {
     }
 
   componentDidMount() {
+    if (!this.name) {
+          this.context.router.push('/')
+    }
     OrderStore.addChangeListener(this.onChange);
   }
 

@@ -47,9 +47,13 @@ AppDispatcher.register((payload) => {
         if (_order.link) {
           sessionStorage.setItem('orderLink', _order.link);
         }
+      } else {
+        _order = {}
       }
       if (action.error) {
         _error = action.error;
+      } else {
+        _error = null
       }
       OrderStore.emit(CHANGE_EVENT);
       break

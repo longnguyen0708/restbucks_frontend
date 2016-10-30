@@ -94,5 +94,21 @@ module.exports = {
             });
     },
 
+    cancelOrder: function(orderLink) {
+        request.delete(orderLink)
+            .set('Accept', 'application/json')
+            .end(function(error, res) {
+                if (res) {
+                    if (res.error) {
+                        var errorMsg = _getError(res);
+                        console.log(errorMsg);
+                        receiveOrder(null, errorMsg);
+                    } else {
+                        receiveOrder(null, null);
+                    }
+                }
+            });
+    },
+
 };
 

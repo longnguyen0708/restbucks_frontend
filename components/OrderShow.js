@@ -1,6 +1,7 @@
 import React from 'react'
 import OrderStore from '../stores/OrderStore.js';
 import {getOrder} from '../actions/OrderActionCreators.js';
+import {cancelOrder} from '../actions/OrderActionCreators.js';
 import ReactDOM from "react/lib/ReactDOM";
 import ErrorNotice from '../components/ErrorNotice.js';
 import Button from '../components/Button'
@@ -28,6 +29,7 @@ export default class OrderShow extends React.Component {
     }
     this.handlePayClick = this.handlePayClick.bind(this);
     this.handleUpdateClick = this.handleUpdateClick.bind(this);
+    this.handleCancelClick = this.handleCancelClick.bind(this);
       this.onChange = this.onChange.bind(this);
 
   }
@@ -43,6 +45,11 @@ export default class OrderShow extends React.Component {
         this.context.router.push(path)
     }
 
+    handleCancelClick(event) {
+        const orderLink = sessionStorage.getItem('orderLink');
+        cancelOrder(orderLink)
+    }
+
   componentDidMount() {
     OrderStore.addChangeListener(this.onChange);
   }
@@ -56,6 +63,11 @@ export default class OrderShow extends React.Component {
       error: OrderStore.getError(),
       order: OrderStore.getOrder()
     });
+      console.log('order name after delete ' + this.state.order.name)
+      if (!this.state.order.name) {
+          const path = '/'
+          this.context.router.push(path)
+      }
   }
 
   render() {
@@ -72,6 +84,7 @@ export default class OrderShow extends React.Component {
           <div>{this.state.order.status}</div>
           <Button isRender={this.state.order.status == OrderStatus.PAYMENT_EXPECTED} value="Update Order" onClick={() => this.handleUpdateClick()}/>
           <Button isRender={this.state.order.payment} value="Pay" onClick={() => this.handlePayClick()}/>
+          <Button isRender={this.state.order.status == OrderStatus.PAYMENT_EXPECTED} value="Cancel Order" onClick={() => this.handleCancelClick()}/>
       </div>
      );
   }

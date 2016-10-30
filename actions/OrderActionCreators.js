@@ -3,6 +3,7 @@ import {ActionTypes} from '../constants/AppConstants.js';
 import {placeOrder} from '../utils/APIUtils.js';
 import {getOrder} from '../utils/APIUtils.js';
 import {updateOrder} from '../utils/APIUtils.js';
+import {cancelOrder} from '../utils/APIUtils.js';
 
 //var ActionTypes = AppConstants.ActionTypes;
 
@@ -23,14 +24,14 @@ module.exports = {
   },
 
   getOrder: function(orderLink) {
-    // AppDispatcher.handleViewAction({
-    //   orderLink: orderLink
-    // });
     getOrder(orderLink);
   },
 
   updateOrder: function(orderLink, location, name, quantity, milk, size, shots) {
     updateOrder(orderLink, location, name, quantity, milk, size, shots);
+  },
+  cancelOrder: function(orderLink) {
+    cancelOrder(orderLink);
   },
 };
 
