@@ -23,7 +23,8 @@ export default class OrderNew extends React.Component {
         milk: '',
         size: '',
         shots: '',
-        user_id: ''
+        user_id: '',
+        orderLink: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
       this.handleLocationChange = this.handleLocationChange.bind(this);
@@ -76,8 +77,14 @@ export default class OrderNew extends React.Component {
 
   onChange() {
     this.setState({
-      error: OrderStore.getError()
+      error: OrderStore.getError(),
+        orderLink: OrderStore.getOrderLink()
     });
+    if (this.state.orderLink) {
+        const path = '/show_order';
+        console.log('redirect to: ' + path);
+        this.context.router.push(path)
+    }
   }
 
   // _onSubmit(e) {
@@ -136,6 +143,10 @@ export default class OrderNew extends React.Component {
      );
   }
 
+}
+
+OrderNew.contextTypes = {
+    router: React.PropTypes.object
 }
 
 

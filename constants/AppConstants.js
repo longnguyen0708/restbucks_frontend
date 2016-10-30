@@ -25,7 +25,8 @@ module.exports = {
 
     // Orders
     PLACE_ORDER: null,
-    RECEIVE_ORDER: null
+    RECEIVE_ORDER: null,
+    GET_ORDER: null
   })
 
 };

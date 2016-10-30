@@ -1,6 +1,7 @@
 import AppDispatcher from '../dispatcher/AppDispatcher.js';
 import {ActionTypes} from '../constants/AppConstants.js';
 import {placeOrder} from '../utils/APIUtils.js';
+import {getOrder} from '../utils/APIUtils.js';
 
 //var ActionTypes = AppConstants.ActionTypes;
 
@@ -18,6 +19,13 @@ module.exports = {
       user_id: user_id
     });
     placeOrder(location, name, quantity, milk, size, shots, user_id);
+  },
+
+  getOrder: function(orderLink) {
+    // AppDispatcher.handleViewAction({
+    //   orderLink: orderLink
+    // });
+    getOrder(orderLink);
   },
 
   

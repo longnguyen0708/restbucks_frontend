@@ -7,6 +7,7 @@ import Repos from './components/Repos'
 import Repo from './components/Repo'
 import Home from './components/Home'
 import OrderNew from './components/OrderNew'
+import OrderShow from './components/OrderShow'
 
 render((
   <Router history={browserHistory}>
@@ -17,7 +18,8 @@ render((
       </Route>
       
       <Route path="/about" component={About}/>
-        <Route path="/orders" component={OrderNew}/>
+        <Route path="/new_order" component={OrderNew}/>
+        <Route path="/show_order" component={OrderShow}/>
     </Route>
   </Router>
 ), document.getElementById('app'))

@@ -26,6 +26,10 @@ class OrderStoreClass extends EventEmitter {
     return _order;
   }
 
+  getOrderLink() {
+    return _order.link;
+  }
+
   getError() {
     return _error;
   }
@@ -43,9 +47,9 @@ AppDispatcher.register((payload) => {
     case ActionTypes.RECEIVE_ORDER:
       if (action.json) {
         _order = action.json;
-        // // Token will always live in the session, so that the API can grab it with no hassle
-        // sessionStorage.setItem('accessToken', _accessToken);
-        // sessionStorage.setItem('email', _email);
+        if (_order.link) {
+          sessionStorage.setItem('orderLink', _order.link);
+        }
       }
       if (action.error) {
         _error = action.error;

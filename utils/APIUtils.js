@@ -1,4 +1,5 @@
 import {receiveOrder} from '../actions/ServerActionCreators.js';
+import {getOrderResponse} from '../actions/ServerActionCreators.js';
 import {APIEndpoints} from '../constants/AppConstants.js';
 import request from 'superagent';
 
@@ -38,13 +39,32 @@ module.exports = {
           } else {
             console.log(res);
             let json = res.body;
-            json.location = res.header.location;
+            json.link = res.header.location;
             receiveOrder(json, null);
             console.log(json);
           }
         }
       });
   },
+
+    getOrder: function(orderLink) {
+        request.get(orderLink)
+            .set('Accept', 'application/json')
+            .end(function(error, res) {
+                if (res) {
+                    if (res.error) {
+                        var errorMsg = _getError(res);
+                        console.log(errorMsg);
+                        getOrderResponse(null, errorMsg);
+                    } else {
+                        console.log(res);
+                        let json = res.body;
+                        getOrderResponse(json, null);
+                        console.log(json);
+                    }
+                }
+            });
+    },
 
 
 };
