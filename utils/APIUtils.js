@@ -110,5 +110,31 @@ module.exports = {
             });
     },
 
+    payOrder: function(paymentLink, card_holder_name, card_number, expiry_month, expiry_year, amount) {
+        request.put(paymentLink)
+            .send({
+                card_holder_name: card_holder_name,
+                card_number: card_number,
+                expiry_month: expiry_month,
+                expiry_year: expiry_year,
+                amount: amount
+            })
+            .set('Accept', 'application/json')
+            .type('application/json')
+            .end(function(error, res) {
+                if (res) {
+                    if (res.error) {
+                        var errorMsg = _getError(res);
+                        console.log(errorMsg);
+                        receiveOrder(null, errorMsg);
+                    } else {
+                        console.log(res);
+                        let json = res.body;
+                        receiveOrder(json, null);
+                        console.log(json);
+                    }
+                }
+            });
+    },
 };
 

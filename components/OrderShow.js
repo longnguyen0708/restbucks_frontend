@@ -25,7 +25,8 @@ export default class OrderShow extends React.Component {
     if (!this.state.order.name) {
         const orderLink = sessionStorage.getItem('orderLink');
         console.log('link: ' + orderLink)
-        getOrder(orderLink);
+        if (orderLink)
+            getOrder(orderLink);
     }
     this.handlePayClick = this.handlePayClick.bind(this);
     this.handleUpdateClick = this.handleUpdateClick.bind(this);
@@ -36,8 +37,10 @@ export default class OrderShow extends React.Component {
 
 
     handlePayClick(event) {
-        //alert('Text field value is: ' + this.state.value);
-       // placeOrder(this.state.location, this.state.name, this.state.quantity, this.state.milk, this.state.size, this.state.shots, this.state.user_id);
+        sessionStorage.setItem('payment', this.state.order.payment)
+        sessionStorage.setItem('cost', this.state.order.cost)
+        const path = '/pay_order'
+        this.context.router.push(path)
     }
 
     handleUpdateClick(event) {
@@ -82,9 +85,10 @@ export default class OrderShow extends React.Component {
           <div>{this.state.order.size}</div>
           <div>{this.state.order.shots}</div>
           <div>{this.state.order.status}</div>
-          <Button isRender={this.state.order.status == OrderStatus.PAYMENT_EXPECTED} value="Update Order" onClick={() => this.handleUpdateClick()}/>
+          <div>{this.state.order.cost}</div>
+          <Button isRender={this.state.order.payment} value="Update Order" onClick={() => this.handleUpdateClick()}/>
           <Button isRender={this.state.order.payment} value="Pay" onClick={() => this.handlePayClick()}/>
-          <Button isRender={this.state.order.status == OrderStatus.PAYMENT_EXPECTED} value="Cancel Order" onClick={() => this.handleCancelClick()}/>
+          <Button isRender={this.state.order.payment} value="Cancel Order" onClick={() => this.handleCancelClick()}/>
       </div>
      );
   }

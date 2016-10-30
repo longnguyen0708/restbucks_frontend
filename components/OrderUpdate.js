@@ -64,7 +64,7 @@ export default class OrderNew extends React.Component {
     }
 
   componentDidMount() {
-    if (!this.name) {
+    if (!this.state.name) {
           this.context.router.push('/')
     }
     OrderStore.addChangeListener(this.onChange);
