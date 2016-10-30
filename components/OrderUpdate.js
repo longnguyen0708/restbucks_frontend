@@ -1,6 +1,6 @@
 import React from 'react'
 import OrderStore from '../stores/OrderStore.js';
-import {placeOrder} from '../actions/OrderActionCreators.js';
+import {updateOrder} from '../actions/OrderActionCreators.js';
 import ReactDOM from "react/lib/ReactDOM";
 import ErrorNotice from '../components/ErrorNotice.js';
 
@@ -15,15 +15,15 @@ export default class OrderNew extends React.Component {
 
   constructor(props) {
     super(props);
+      const order = OrderStore.getOrder();
     this.state = {
       error: null,
-      location: '',
-        name:'',
-        quantity: '',
-        milk: '',
-        size: '',
-        shots: '',
-        user_id: ''
+      location: order.location,
+        name: order.name,
+        quantity: order.quantity,
+        milk: order.milk,
+        size: order.size,
+        shots: order.shots
     };
     this.handleSubmit = this.handleSubmit.bind(this);
       this.handleLocationChange = this.handleLocationChange.bind(this);
@@ -32,7 +32,6 @@ export default class OrderNew extends React.Component {
       this.handleMilkChange = this.handleMilkChange.bind(this);
       this.handleSizeChange = this.handleSizeChange.bind(this);
       this.handleShotsChange = this.handleShotsChange.bind(this);
-      this.handleUserChange = this.handleUserChange.bind(this);
 
       this.onChange = this.onChange.bind(this);
 
@@ -57,13 +56,11 @@ export default class OrderNew extends React.Component {
     handleShotsChange(event) {
         this.setState({shots: event.target.value});
     }
-    handleUserChange(event) {
-        this.setState({user_id: event.target.value});
-    }
 
     handleSubmit(event) {
         //alert('Text field value is: ' + this.state.value);
-        placeOrder(this.state.location, this.state.name, this.state.quantity, this.state.milk, this.state.size, this.state.shots, this.state.user_id);
+        const orderLink = sessionStorage.getItem('orderLink');
+        updateOrder(orderLink, this.state.location, this.state.name, this.state.quantity, this.state.milk, this.state.size, this.state.shots);
     }
 
   componentDidMount() {
@@ -75,27 +72,15 @@ export default class OrderNew extends React.Component {
   }
 
   onChange() {
-    this.setState({
-      error: OrderStore.getError()
-    });
-    if (OrderStore.getOrder().name) {
-        const path = '/show_order';
-        console.log('redirect to: ' + path);
-        this.context.router.push(path)
-    }
+      this.setState({
+          error: OrderStore.getError()
+      });
+      if (OrderStore.getOrder().name) {
+          const path = '/show_order';
+          console.log('redirect to: ' + path);
+          this.context.router.push(path)
+      }
   }
-
-  // _onSubmit(e) {
-  //   e.preventDefault();
-  //   var location = ReactDOM.findDOMNode(this.refs.location).value;
-  //   var name = ReactDOM.findDOMNode(this.refs.name).value;
-  //   var quantity = ReactDOM.findDOMNode(this.refs.quantity).value;
-  //   var milk = ReactDOM.findDOMNode(this.refs.milk).value;
-  //   var size = ReactDOM.findDOMNode(this.refs.size).value;
-  //   var shots = ReactDOM.findDOMNode(this.refs.shots).value;
-  //   var user_id = ReactDOM.findDOMNode(this.refs.user_id).value;
-  //   placeOrder(location, name, quantity, milk, size, shots, user_id);
-  // }
   
   render() {
     var error = (this.state.error) ? <ErrorNotice error={this.state.error}/> : <div></div>;
@@ -127,13 +112,9 @@ export default class OrderNew extends React.Component {
               <input type="text" placeholder="shots" value={this.state.shots}
                      onChange={this.handleShotsChange} />
             </div>
-            <div className="dfd" >
-              <input type="text" placeholder="user_id" value={this.state.user_id}
-                     onChange={this.handleUserChange} />
-            </div>
             <div className="new-story__submit">
               <button onClick={this.handleSubmit}>
-                Place order
+                Update order
               </button>
             </div>
          </div>

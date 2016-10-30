@@ -3,6 +3,8 @@ import OrderStore from '../stores/OrderStore.js';
 import {getOrder} from '../actions/OrderActionCreators.js';
 import ReactDOM from "react/lib/ReactDOM";
 import ErrorNotice from '../components/ErrorNotice.js';
+import Button from '../components/Button'
+import {OrderStatus} from '../constants/AppConstants'
 
 
 export default class OrderShow extends React.Component {
@@ -24,16 +26,21 @@ export default class OrderShow extends React.Component {
         console.log('link: ' + orderLink)
         getOrder(orderLink);
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
-
+    this.handlePayClick = this.handlePayClick.bind(this);
+    this.handleUpdateClick = this.handleUpdateClick.bind(this);
       this.onChange = this.onChange.bind(this);
 
   }
 
 
-    handleSubmit(event) {
+    handlePayClick(event) {
         //alert('Text field value is: ' + this.state.value);
        // placeOrder(this.state.location, this.state.name, this.state.quantity, this.state.milk, this.state.size, this.state.shots, this.state.user_id);
+    }
+
+    handleUpdateClick(event) {
+        const path = '/update_order'
+        this.context.router.push(path)
     }
 
   componentDidMount() {
@@ -62,11 +69,15 @@ export default class OrderShow extends React.Component {
           <div>{this.state.order.milk}</div>
           <div>{this.state.order.size}</div>
           <div>{this.state.order.shots}</div>
-          <div>{this.state.order.name}</div>
+          <div>{this.state.order.status}</div>
+          <Button isRender={this.state.order.status == OrderStatus.PAYMENT_EXPECTED} value="Update Order" onClick={() => this.handleUpdateClick()}/>
+          <Button isRender={this.state.order.payment} value="Pay" onClick={() => this.handlePayClick()}/>
       </div>
      );
   }
 
 }
 
-
+OrderShow.contextTypes = {
+    router: React.PropTypes.object
+}

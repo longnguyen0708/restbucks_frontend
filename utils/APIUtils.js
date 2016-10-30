@@ -55,17 +55,44 @@ module.exports = {
                     if (res.error) {
                         var errorMsg = _getError(res);
                         console.log(errorMsg);
-                        getOrderResponse(null, errorMsg);
+                        receiveOrder(null, errorMsg);
                     } else {
                         console.log(res);
                         let json = res.body;
-                        getOrderResponse(json, null);
+                        receiveOrder(json, null);
                         console.log(json);
                     }
                 }
             });
     },
 
+    updateOrder: function(orderLink, location, name, quantity, milk, size, shots) {
+        request.put(orderLink)
+            .send({
+                location: location,
+                name: name,
+                quantity: quantity,
+                milk: milk,
+                size: size,
+                shots: shots
+            })
+            .set('Accept', 'application/json')
+            .type('application/json')
+            .end(function(error, res) {
+                if (res) {
+                    if (res.error) {
+                        var errorMsg = _getError(res);
+                        console.log(errorMsg);
+                        receiveOrder(null, errorMsg);
+                    } else {
+                        console.log(res);
+                        let json = res.body;
+                        receiveOrder(json, null);
+                        console.log(json);
+                    }
+                }
+            });
+    },
 
 };
 

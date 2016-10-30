@@ -10,6 +10,10 @@ module.exports = {
     ORDERS:        APIRoot + "/orders"
   },
 
+  OrderStatus: {
+    PAYMENT_EXPECTED: "payment expected"
+  },
+
   PayloadSources: keyMirror({
     SERVER_ACTION: null,
     VIEW_ACTION: null

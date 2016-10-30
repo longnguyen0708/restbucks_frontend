@@ -26,9 +26,6 @@ class OrderStoreClass extends EventEmitter {
     return _order;
   }
 
-  getOrderLink() {
-    return _order.link;
-  }
 
   getError() {
     return _error;

@@ -13,13 +13,13 @@ module.exports = {
     });
   },
 
-  getOrderResponse: function(json, error) {
-    AppDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_ORDER,
-      json: json,
-      error: error
-    });
-  },
+  // getOrderResponse: function(json, error) {
+  //   AppDispatcher.handleServerAction({
+  //     type: ActionTypes.RECEIVE_ORDER,
+  //     json: json,
+  //     error: error
+  //   });
+  // },
 
   // receiveStories: function(json) {
   //   AppDispatcher.handleServerAction({

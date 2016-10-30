@@ -2,6 +2,7 @@ import AppDispatcher from '../dispatcher/AppDispatcher.js';
 import {ActionTypes} from '../constants/AppConstants.js';
 import {placeOrder} from '../utils/APIUtils.js';
 import {getOrder} from '../utils/APIUtils.js';
+import {updateOrder} from '../utils/APIUtils.js';
 
 //var ActionTypes = AppConstants.ActionTypes;
 
@@ -28,6 +29,8 @@ module.exports = {
     getOrder(orderLink);
   },
 
-  
+  updateOrder: function(orderLink, location, name, quantity, milk, size, shots) {
+    updateOrder(orderLink, location, name, quantity, milk, size, shots);
+  },
 };
 
