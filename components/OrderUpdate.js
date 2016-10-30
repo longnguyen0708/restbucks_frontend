@@ -64,6 +64,10 @@ export default class OrderNew extends React.Component {
     }
 
   componentDidMount() {
+      if (!sessionStorage.getItem('token')) {
+          const path = '/login'
+          this.context.router.push(path)
+      }
     if (!this.state.name) {
           this.context.router.push('/')
     }

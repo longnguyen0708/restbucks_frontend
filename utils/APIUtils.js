@@ -1,5 +1,5 @@
 import {receiveOrder} from '../actions/ServerActionCreators.js';
-import {receiveToken} from '../actions/ServerActionCreators.js';
+import {receiveLogin} from '../actions/ServerActionCreators.js';
 import {APIEndpoints} from '../constants/AppConstants.js';
 import request from 'superagent';
 
@@ -11,6 +11,10 @@ function _getError(res) {
     errorMsg = json.error;
   }
   return errorMsg;
+}
+
+function _getToken() {
+    return sessionStorage.getItem('token');
 }
 
 //var APIEndpoints = AppConstants.APIEndpoints;
@@ -28,6 +32,7 @@ module.exports = {
         shots: shots,
         user_id: user_id
       })
+        .set('Authorization', 'Token token=' + _getToken())
       .set('Accept', 'application/json')
         .type('application/json')
       .end(function(error, res) {
@@ -49,6 +54,7 @@ module.exports = {
 
     getOrder: function(orderLink) {
         request.get(orderLink)
+            .set('Authorization', 'Token token=' + _getToken())
             .set('Accept', 'application/json')
             .end(function(error, res) {
                 if (res) {
@@ -68,6 +74,7 @@ module.exports = {
 
     updateOrder: function(orderLink, location, name, quantity, milk, size, shots) {
         request.put(orderLink)
+            .set('Authorization', 'Token token=' + _getToken())
             .send({
                 location: location,
                 name: name,
@@ -96,6 +103,7 @@ module.exports = {
 
     cancelOrder: function(orderLink) {
         request.delete(orderLink)
+            .set('Authorization', 'Token token=' + _getToken())
             .set('Accept', 'application/json')
             .end(function(error, res) {
                 if (res) {
@@ -112,6 +120,7 @@ module.exports = {
 
     payOrder: function(paymentLink, card_holder_name, card_number, expiry_month, expiry_year, amount) {
         request.put(paymentLink)
+            .set('Authorization', 'Token token=' + _getToken())
             .send({
                 card_holder_name: card_holder_name,
                 card_number: card_number,
@@ -139,6 +148,7 @@ module.exports = {
 
     completeOrder: function(receiptLink) {
         request.delete(receiptLink)
+            .set('Authorization', 'Token token=' + _getToken())
             .set('Accept', 'application/json')
             .end(function(error, res) {
                 if (res) {
@@ -155,7 +165,7 @@ module.exports = {
 
 
     login: function(email, password) {
-        request.get(APIEndpoints.TOKEN)
+        request.get(APIEndpoints.LOGIN)
             .set("Authorization", "Basic " + btoa(email + ":" + password))
             .set('Accept', 'application/json')
             .end(function(error, res) {
@@ -163,11 +173,11 @@ module.exports = {
                     if (res.error) {
                         var errorMsg = _getError(res);
                         console.log(errorMsg);
-                        receiveToken(null, errorMsg);
+                        receiveLogin(null, errorMsg);
                     } else {
                         console.log(res);
                         let json = res.body;
-                        receiveToken(json, null);
+                        receiveLogin(json, null);
                         console.log(json);
                     }
                 }

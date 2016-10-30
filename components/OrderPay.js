@@ -48,6 +48,10 @@ export default class OrderPay extends React.Component {
     }
 
   componentDidMount() {
+      if (!sessionStorage.getItem('token')) {
+          const path = '/login'
+          this.context.router.push(path)
+      }
       const paymentLink = OrderStore.getOrder().payment
     if (!paymentLink) {
         this.context.router.push('/')

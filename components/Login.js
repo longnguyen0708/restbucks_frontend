@@ -48,6 +48,7 @@ export default class Login extends React.Component {
     this.setState({
       error: UserStore.getError()
     });
+      console.log('error:' + this.state.error)
     if (!this.state.error) {
         const path = '/';
         console.log('redirect to: ' + path);

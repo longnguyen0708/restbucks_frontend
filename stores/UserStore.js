@@ -7,7 +7,7 @@ var CHANGE_EVENT = 'change';
 
 
 let _error = null;
-let _token = null;
+let _user = {};
 
 class UserStoreClass extends EventEmitter {
 
@@ -18,12 +18,6 @@ class UserStoreClass extends EventEmitter {
   removeChangeListener(cb) {
     this.removeListener(CHANGE_EVENT, cb);
   }
-
-
-  getOrder() {
-    return _token;
-  }
-
 
   getError() {
     return _error;
@@ -39,10 +33,13 @@ AppDispatcher.register((payload) => {
 
   switch(action.type) {
 
-    case ActionTypes.RECEIVE_TOKEN:
+    case ActionTypes.RECEIVE_LOGIN:
       if (action.json) {
-        _token = action.json.token;
-          sessionStorage.setItem('token', _token);
+        const user = action.json;
+          console.log(user)
+          sessionStorage.setItem('token', user.token);
+          sessionStorage.setItem('userName', user.userName);
+          sessionStorage.setItem('userId', user.userId);
       }
       if (action.error) {
         _error = action.error;

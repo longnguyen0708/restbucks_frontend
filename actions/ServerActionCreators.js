@@ -14,9 +14,9 @@ module.exports = {
   },
 
 
-  receiveToken: function(json, error) {
+  receiveLogin: function(json, error) {
     AppDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_TOKEN,
+      type: ActionTypes.RECEIVE_LOGIN,
       json: json,
       error: error
     });

@@ -60,6 +60,10 @@ export default class OrderShow extends React.Component {
     }
 
   componentDidMount() {
+      if (!sessionStorage.getItem('token')) {
+          const path = '/login'
+          this.context.router.push(path)
+      }
     OrderStore.addChangeListener(this.onChange);
   }
 
@@ -72,8 +76,7 @@ export default class OrderShow extends React.Component {
       error: OrderStore.getError(),
       order: OrderStore.getOrder()
     });
-      console.log('order name after delete ' + this.state.order.name)
-      if (!this.state.order.name) {
+      if (!this.state.error && !this.state.order.location) {
           const path = '/'
           this.context.router.push(path)
       }

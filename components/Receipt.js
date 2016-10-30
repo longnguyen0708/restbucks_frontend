@@ -38,6 +38,10 @@ export default class Reciept extends React.Component {
     }
 
   componentDidMount() {
+      if (!sessionStorage.getItem('token')) {
+          const path = '/login'
+          this.context.router.push(path)
+      }
     OrderStore.addChangeListener(this.onChange);
   }
 

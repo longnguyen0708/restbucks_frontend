@@ -5,7 +5,7 @@ var APIRoot = "http://localhost:3000";
 module.exports = {
 
   APIEndpoints: {
-    TOKEN:          APIRoot + "/token",
+    LOGIN:          APIRoot + "/login",
     REGISTRATION:   APIRoot + "/v1/users",
     ORDERS:        APIRoot + "/orders"
   },
@@ -21,7 +21,7 @@ module.exports = {
 
   ActionTypes: keyMirror({
     // Session
-    RECEIVE_TOKEN: null,
+    RECEIVE_LOGIN: null,
 
     // Orders
     PLACE_ORDER: null,

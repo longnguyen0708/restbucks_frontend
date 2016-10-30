@@ -17,7 +17,7 @@ export default class OrderNew extends React.Component {
         milk: '',
         size: '',
         shots: '',
-        user_id: ''
+        user_id: sessionStorage.getItem('userId')
     };
     this.handleSubmit = this.handleSubmit.bind(this);
       this.handleLocationChange = this.handleLocationChange.bind(this);
@@ -26,7 +26,6 @@ export default class OrderNew extends React.Component {
       this.handleMilkChange = this.handleMilkChange.bind(this);
       this.handleSizeChange = this.handleSizeChange.bind(this);
       this.handleShotsChange = this.handleShotsChange.bind(this);
-      this.handleUserChange = this.handleUserChange.bind(this);
 
       this.onChange = this.onChange.bind(this);
 
@@ -51,9 +50,6 @@ export default class OrderNew extends React.Component {
     handleShotsChange(event) {
         this.setState({shots: event.target.value});
     }
-    handleUserChange(event) {
-        this.setState({user_id: event.target.value});
-    }
 
     handleSubmit(event) {
         //alert('Text field value is: ' + this.state.value);
@@ -61,6 +57,10 @@ export default class OrderNew extends React.Component {
     }
 
   componentDidMount() {
+      if (!sessionStorage.getItem('token')) {
+          const path = '/login'
+          this.context.router.push(path)
+      }
     OrderStore.addChangeListener(this.onChange);
   }
 
@@ -109,10 +109,6 @@ export default class OrderNew extends React.Component {
             <div className="dfd" >
               <input type="text" placeholder="shots" value={this.state.shots}
                      onChange={this.handleShotsChange} />
-            </div>
-            <div className="dfd" >
-              <input type="text" placeholder="user_id" value={this.state.user_id}
-                     onChange={this.handleUserChange} />
             </div>
             <div className="new-story__submit">
               <button onClick={this.handleSubmit}>
