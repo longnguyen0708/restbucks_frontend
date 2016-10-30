@@ -8,6 +8,7 @@ import OrderShow from './components/OrderShow'
 import OrderUpdate from './components/OrderUpdate'
 import OrderPay from './components/OrderPay'
 import Receipt from './components/Receipt'
+import Login from './components/Login'
 
 render((
   <Router history={browserHistory}>
@@ -19,6 +20,8 @@ render((
         <Route path="/update_order" component={OrderUpdate}/>
         <Route path="/pay_order" component={OrderPay}/>
         <Route path="/receipt" component={Receipt}/>
+
+        <Route path="/login" component={Login}/>
     </Route>
   </Router>
 ), document.getElementById('app'))

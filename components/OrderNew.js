@@ -7,12 +7,6 @@ import ErrorNotice from '../components/ErrorNotice.js';
 
 export default class OrderNew extends React.Component {
 
-  // componentDidMount: function() {
-  //   // if (!SessionStore.isLoggedIn()) {
-  //   //   RouteActionCreators.redirect('app');
-  //   // }
-  // },
-
   constructor(props) {
     super(props);
     this.state = {
@@ -85,18 +79,7 @@ export default class OrderNew extends React.Component {
     }
   }
 
-  // _onSubmit(e) {
-  //   e.preventDefault();
-  //   var location = ReactDOM.findDOMNode(this.refs.location).value;
-  //   var name = ReactDOM.findDOMNode(this.refs.name).value;
-  //   var quantity = ReactDOM.findDOMNode(this.refs.quantity).value;
-  //   var milk = ReactDOM.findDOMNode(this.refs.milk).value;
-  //   var size = ReactDOM.findDOMNode(this.refs.size).value;
-  //   var shots = ReactDOM.findDOMNode(this.refs.shots).value;
-  //   var user_id = ReactDOM.findDOMNode(this.refs.user_id).value;
-  //   placeOrder(location, name, quantity, milk, size, shots, user_id);
-  // }
-  
+
   render() {
     var error = (this.state.error) ? <ErrorNotice error={this.state.error}/> : <div></div>;
     return (

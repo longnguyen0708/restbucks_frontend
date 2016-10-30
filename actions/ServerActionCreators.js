@@ -13,35 +13,15 @@ module.exports = {
     });
   },
 
-  // getOrderResponse: function(json, error) {
-  //   AppDispatcher.handleServerAction({
-  //     type: ActionTypes.RECEIVE_ORDER,
-  //     json: json,
-  //     error: error
-  //   });
-  // },
 
-  // receiveStories: function(json) {
-  //   AppDispatcher.handleServerAction({
-  //     type: ActionTypes.RECEIVE_STORIES,
-  //     json: json
-  //   });
-  // },
-  //
-  // receiveStory: function(json) {
-  //   AppDispatcher.handleServerAction({
-  //     type: ActionTypes.RECEIVE_STORY,
-  //     json: json
-  //   });
-  // },
-  //
-  // receiveCreatedStory: function(json, errors) {
-  //   AppDispatcher.handleServerAction({
-  //     type: ActionTypes.RECEIVE_CREATED_STORY,
-  //     json: json,
-  //     errors: errors
-  //   });
-  // }
-  
+  receiveToken: function(json, error) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_TOKEN,
+      json: json,
+      error: error
+    });
+  },
+
+
 };
 

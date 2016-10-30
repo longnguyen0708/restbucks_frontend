@@ -1,5 +1,5 @@
 import {receiveOrder} from '../actions/ServerActionCreators.js';
-import {getOrderResponse} from '../actions/ServerActionCreators.js';
+import {receiveToken} from '../actions/ServerActionCreators.js';
 import {APIEndpoints} from '../constants/AppConstants.js';
 import request from 'superagent';
 
@@ -148,6 +148,27 @@ module.exports = {
                         receiveOrder(null, errorMsg);
                     } else {
                         receiveOrder(null, null);
+                    }
+                }
+            });
+    },
+
+
+    login: function(email, password) {
+        request.get(APIEndpoints.TOKEN)
+            .set("Authorization", "Basic " + btoa(email + ":" + password))
+            .set('Accept', 'application/json')
+            .end(function(error, res) {
+                if (res) {
+                    if (res.error) {
+                        var errorMsg = _getError(res);
+                        console.log(errorMsg);
+                        receiveToken(null, errorMsg);
+                    } else {
+                        console.log(res);
+                        let json = res.body;
+                        receiveToken(json, null);
+                        console.log(json);
                     }
                 }
             });
