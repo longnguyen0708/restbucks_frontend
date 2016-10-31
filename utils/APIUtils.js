@@ -186,5 +186,28 @@ module.exports = {
                 }
             });
     },
+
+    register: function(email, name, password) {
+        request.post(APIEndpoints.REGISTRATION)
+            .send({
+                email: email,
+                name: name,
+                password: password
+            })
+            .set('Accept', 'application/json')
+            .type('application/json')
+            .end(function(error, res) {
+                if (res) {
+                    if (res.error) {
+                        var errorMsg = _getError(res);
+                        console.log(errorMsg);
+                        receiveLogin(null, errorMsg);
+                    } else {
+                        console.log(res);
+                        receiveLogin(null, null);
+                    }
+                }
+            });
+    },
 };
 

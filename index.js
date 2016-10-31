@@ -9,6 +9,7 @@ import OrderUpdate from './components/OrderUpdate'
 import OrderPay from './components/OrderPay'
 import Receipt from './components/Receipt'
 import Login from './components/Login'
+import Register from './components/Register'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
@@ -25,6 +26,7 @@ render((
             <Route path="/receipt" component={Receipt}/>
 
             <Route path="/login" component={Login}/>
+          <Route path="/register" component={Register}/>
         </Route>
   </Router>
     </MuiThemeProvider>

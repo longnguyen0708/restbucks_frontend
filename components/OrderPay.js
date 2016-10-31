@@ -107,12 +107,12 @@ export default class OrderPay extends React.Component {
 
                         <br/>
                         <TextField
-                            id="text-field-controlled" fullWidth="true"
+                            id="text-field-controlled" fullWidth={true}
                             hintText="Card holder name" value={this.state.card_holder_name}
                                onChange={this.handleCardHolderNameChange} />
                         <br/>
                         <TextField
-                            id="text-field-controlled" fullWidth="true"
+                            id="text-field-controlled" fullWidth={true}
                             hintText="Card number" value={this.state.card_number}
                                onChange={this.handleCardNumberChange} />
                         <br/>

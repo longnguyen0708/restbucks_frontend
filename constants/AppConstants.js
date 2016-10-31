@@ -6,7 +6,7 @@ module.exports = {
 
   APIEndpoints: {
     LOGIN:          APIRoot + "/login",
-    REGISTRATION:   APIRoot + "/v1/users",
+    REGISTRATION:   APIRoot + "/users",
     ORDERS:        APIRoot + "/orders"
   },
 

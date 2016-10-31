@@ -51,7 +51,7 @@ export default class Header extends React.Component {
         var notLogin = <div style={styles.notLogin}>
             <FlatButton label="Log in" onClick={() => {this.context.router.push('/login')}}/>
             <span>|</span>
-            <FlatButton label="Register" />
+            <FlatButton label="Register" onClick={() => {this.context.router.push('/register')}}/>
         </div>
 
         var logined = <div style={styles.notLogin}>
