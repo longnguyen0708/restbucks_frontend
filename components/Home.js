@@ -9,8 +9,8 @@ const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    paddingLeft: 40,
-    paddingRight: 40,
+    // paddingLeft: 40,
+    // paddingRight: 40,
   },
   gridList: {
 
@@ -58,7 +58,9 @@ export default class Home extends React.Component {
   }
 
   handleItemClick(title, img) {
-    alert(title)
+    sessionStorage.setItem('itemName', title);
+    sessionStorage.setItem('itemImg', img);
+    this.context.router.push('/new_order')
   }
 
   render() {

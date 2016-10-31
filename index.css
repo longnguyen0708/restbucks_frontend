@@ -1,3 +1,12 @@
 .active {
   color: green;
 }
+
+#app {
+  margin: 0;
+  background-image: url("http://demandware.edgesuite.net/aafv_prd/on/demandware.static/-/Sites-Starbucks-Library/default/dw7a14e440/images/pdp/pdp_bg_siren.jpg");
+}
+
+table, tr, td{
+  padding: 7px;
+}

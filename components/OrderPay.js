@@ -3,7 +3,13 @@ import OrderStore from '../stores/OrderStore.js';
 import {payOrder} from '../actions/OrderActionCreators.js';
 import ReactDOM from "react/lib/ReactDOM";
 import ErrorNotice from '../components/ErrorNotice.js';
-
+import TextField from 'material-ui/TextField';
+import Button from '../components/Button'
+import {GridList, GridTile} from 'material-ui/GridList';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
+import Divider from 'material-ui/Divider';
 
 export default class OrderPay extends React.Component {
 
@@ -77,32 +83,58 @@ export default class OrderPay extends React.Component {
   render() {
     var error = (this.state.error) ? <ErrorNotice error={this.state.error}/> : <div></div>;
     return (
-      <div>
-        {error}
-        <div className="row">
-            <div className="dfd" >
-              <input type="text" placeholder="Card holder name" value={this.state.card_holder_name}
-                     onChange={this.handleCardHolderNameChange} />
-            </div>
-            <div className="dfd" >
-              <input type="text" placeholder="Card number" value={this.state.card_number}
-                     onChange={this.handleCardNumberChange} />
-            </div>
-            <div className="dfd" >
-              <input type="text" placeholder="Expiry month" value={this.state.expiry_month}
-                     onChange={this.handleExpiryMonthChange} />
-            </div>
-            <div className="dfd" >
-              <input type="text" placeholder="Expiry year" value={this.state.expiry_year}
-                     onChange={this.handleExpiryYearChange} />
-            </div>
-            <div className="new-story__submit">
-              <button onClick={this.handleSubmit}>
-                Confirm payment
-              </button>
-            </div>
-         </div>
-      </div>
+    <div style={styles.root}>
+        <div style={styles.subroot}>
+            <GridList
+                cols={2}
+                cellHeight={300}
+                padding={0}
+                style={styles.gridList}
+            >
+                <GridTile
+                    cols={1}
+                    rows={2}>
+                    <img src={sessionStorage.getItem('itemImg')} style={styles.img}/>
+                </GridTile>
+                <GridTile
+                    cols={1}
+                    rows={2}>
+                    <div style={styles.options}>
+                        <h1>{'Total cost: $' + sessionStorage.getItem('cost')}</h1>
+                        <Divider />
+
+                        <h3>Please enter your credit/debit card information</h3>
+
+                        <br/>
+                        <TextField
+                            id="text-field-controlled" fullWidth="true"
+                            hintText="Card holder name" value={this.state.card_holder_name}
+                               onChange={this.handleCardHolderNameChange} />
+                        <br/>
+                        <TextField
+                            id="text-field-controlled" fullWidth="true"
+                            hintText="Card number" value={this.state.card_number}
+                               onChange={this.handleCardNumberChange} />
+                        <br/>
+                        <TextField style={styles.text}
+                            id="text-field-controlled"
+                            hintText="Expiry month" value={this.state.expiry_month}
+                               onChange={this.handleExpiryMonthChange} />
+                        <strong>&nbsp;/&nbsp;&nbsp;&nbsp;</strong>
+                        <TextField style={styles.text}
+                            id="text-field-controlled"
+                            hintText="Expiry year" value={this.state.expiry_year}
+                               onChange={this.handleExpiryYearChange} />
+                        <br/><br/><br/>
+                        <RaisedButton  primary = {true} label="Confirm payment" onClick={() => this.handleSubmit()}/>
+
+                        {error}
+                    </div>
+                </GridTile>
+            </GridList>
+        </div>
+    </div>
+
      );
   }
 
@@ -113,3 +145,46 @@ OrderPay.contextTypes = {
 }
 
 
+const styles = {
+    root: {
+        color: '#64625d'
+    },
+
+    subroot: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        marginLeft: 120
+    },
+    gridList: {
+
+        overflowY: 'auto',
+    },
+
+    img: {
+        height: 600,
+        width: 1000
+    },
+    options: {
+        marginTop: 30,
+        marginLeft: 50,
+        paddingRight:50
+    },
+    strong: {
+        width: 150
+    },
+    customDropdown:{
+        width: 200
+    },
+    submitArea: {
+        marginTop: 50,
+    },
+    cost: {
+        fontSize: 30,
+        color: '#64625d'
+    },
+    text: {
+        width: 220
+    }
+
+};

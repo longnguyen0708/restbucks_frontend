@@ -55,7 +55,7 @@ export default class Header extends React.Component {
         </div>
 
         var logined = <div style={styles.notLogin}>
-            <FlatButton label={sessionStorage.getItem('userName') + "\'s orders"} onClick={() => {this.context.router.push('/list_order')}}/>
+            <FlatButton label={sessionStorage.getItem('userName') + "\'s order"} onClick={() => {this.context.router.push('/show_order')}}/>
             <span>|</span>
             <FlatButton
                 label="Log out"

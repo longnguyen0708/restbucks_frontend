@@ -157,7 +157,10 @@ module.exports = {
                         console.log(errorMsg);
                         receiveOrder(null, errorMsg);
                     } else {
-                        receiveOrder(null, null);
+                        console.log(res);
+                        let json = res.body;
+                        receiveOrder(json, null);
+                        console.log(json);
                     }
                 }
             });
