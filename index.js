@@ -9,19 +9,24 @@ import OrderUpdate from './components/OrderUpdate'
 import OrderPay from './components/OrderPay'
 import Receipt from './components/Receipt'
 import Login from './components/Login'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 render((
-  <Router history={browserHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={Home}/>
+    <MuiThemeProvider>
+      <Router history={browserHistory}>
+        <Route path="/" component={App}>
+          <IndexRoute component={Home}/>
 
-        <Route path="/new_order" component={OrderNew}/>
-        <Route path="/show_order" component={OrderShow}/>
-        <Route path="/update_order" component={OrderUpdate}/>
-        <Route path="/pay_order" component={OrderPay}/>
-        <Route path="/receipt" component={Receipt}/>
+            <Route path="/new_order" component={OrderNew}/>
+            <Route path="/show_order" component={OrderShow}/>
+            <Route path="/update_order" component={OrderUpdate}/>
+            <Route path="/pay_order" component={OrderPay}/>
+            <Route path="/receipt" component={Receipt}/>
 
-        <Route path="/login" component={Login}/>
-    </Route>
+            <Route path="/login" component={Login}/>
+        </Route>
   </Router>
+    </MuiThemeProvider>
+
 ), document.getElementById('app'))
