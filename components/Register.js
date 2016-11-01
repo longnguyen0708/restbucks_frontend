@@ -85,12 +85,12 @@ export default class Login extends React.Component {
               <Divider />
 
               <TextField
-                  id="text-field-controlled" fullWidth={true}
+                  id="text-field-controlled" fullWidth={true} type="email"
                   hintText="Email" value={this.state.email}
                   onChange={this.handleEmailChange} />
               <br/>
               <TextField
-                  id="text-field-controlled" fullWidth={true}
+                  id="text-field-controlled" fullWidth={true} type="email"
                   hintText="Confirm email" value={this.state.confirmEmail}
                   onChange={this.handleConfirmEmailChange} />
               <br/>

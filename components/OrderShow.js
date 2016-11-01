@@ -169,10 +169,10 @@ export default class OrderShow extends React.Component {
                             </tr>
                             <tr>
                                 <td style={styles.strong}>
-                                    <strong >Status:</strong>
+                                    {(this.state.order.status=='Completed') ? <strong >Paid time:</strong> :<strong >Status:</strong>}
                                 </td>
                                 <td>
-                                    <div>{this.state.order.status}</div>
+                                    {(this.state.order.status=='Completed') ?<div>{this.state.order.paid_time}</div> :<div>{this.state.order.status}</div>}
                                 </td>
                             </tr>
                             </tbody>
