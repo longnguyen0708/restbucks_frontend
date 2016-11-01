@@ -21,7 +21,7 @@ const styles = {
 const tilesData = [
   {
     img: 'https://s3-us-west-2.amazonaws.com/extra-crispy-media/assets/field%2Fimage%2Fstarbucks-psl-hero-builder.jpg',
-    title: 'Latte',
+    title: 'Pumpkin Spice Latte',
     featured: true,
   },
   {
@@ -31,11 +31,11 @@ const tilesData = [
   },
   {
     img: 'https://assets3.thrillist.com/v1/image/1768238/size/tmg-article_default_mobile.jpg',
-    title: 'Mocha',
+    title: 'Iced Chile Mocha',
   },
   {
     img: 'http://www.starbuckcoffee.net/wp-content/uploads/2011/08/CaramelMacchiato_m_4.jpg',
-    title: 'Macchiato',
+    title: 'Caramel Macchiato',
     featured: true,
   },
   {
@@ -44,7 +44,7 @@ const tilesData = [
   },
   {
     img: 'https://thethrivelifeblog.files.wordpress.com/2014/08/starbucks-coffee-e1335800771163.jpg',
-    title: 'Americano',
+    title: 'Caffe Americano',
   },
 
 ];
