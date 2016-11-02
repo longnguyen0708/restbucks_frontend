@@ -1,1 +1,1 @@
-# Restbucks Frontend
+# Restbucks React + Flux Frontend
