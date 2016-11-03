@@ -1,6 +1,8 @@
 import keyMirror from 'keymirror';
 
-var APIRoot = "http://localhost:3000";
+//var APIRoot = "http://localhost:3000";
+
+var APIRoot = "http://ec2-54-70-90-14.us-west-2.compute.amazonaws.com:3000";
 
 module.exports = {
 
