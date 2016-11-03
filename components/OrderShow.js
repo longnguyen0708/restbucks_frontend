@@ -115,7 +115,7 @@ export default class OrderShow extends React.Component {
                 <GridTile
                     cols={1}
                     rows={2}>
-                    <img src={sessionStorage.getItem('itemImg')} style={styles.img}/>
+                    <img src={this.state.order.name + ".jpg"} style={styles.img}/>
                 </GridTile>
                 <GridTile
                     cols={1}

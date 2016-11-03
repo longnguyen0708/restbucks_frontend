@@ -20,7 +20,8 @@ export default class OrderPay extends React.Component {
         card_holder_name: '',
         card_number:'',
         expiry_month: '',
-        expiry_year: ''
+        expiry_year: '',
+        orderName: OrderStore.getOrder().name
     };
     this.handleSubmit = this.handleSubmit.bind(this);
       this.handleCardHolderNameChange = this.handleCardHolderNameChange.bind(this);
@@ -94,7 +95,7 @@ export default class OrderPay extends React.Component {
                 <GridTile
                     cols={1}
                     rows={2}>
-                    <img src={sessionStorage.getItem('itemImg')} style={styles.img}/>
+                    <img src={this.state.orderName + ".jpg"} style={styles.img}/>
                 </GridTile>
                 <GridTile
                     cols={1}

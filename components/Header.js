@@ -77,7 +77,7 @@ export default class Header extends React.Component {
             style={styles.root}
             iconElementLeft={
                 <IndexLink to="/"><Avatar
-                        src="https://upload.wikimedia.org/wikipedia/en/thumb/3/35/Starbucks_Coffee_Logo.svg/1024px-Starbucks_Coffee_Logo.svg.png"
+                        src="logo.png"
                         size={70}
                         style={styles.logo}
                     /></IndexLink>

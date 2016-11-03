@@ -59,7 +59,7 @@ export default class Home extends React.Component {
 
   handleItemClick(title, img) {
     sessionStorage.setItem('itemName', title);
-    sessionStorage.setItem('itemImg', img);
+    //sessionStorage.setItem('itemImg', img);
     this.context.router.push('/new_order')
   }
 
@@ -74,7 +74,7 @@ export default class Home extends React.Component {
           >
             {tilesData.map((tile) => (
                 <GridTile
-                    key={tile.img}
+                    key={tile.title + ".jpg"}
                     title={tile.title}
                     titlePosition="top"
                     titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
@@ -84,7 +84,7 @@ export default class Home extends React.Component {
                       this.handleItemClick(tile.title, tile.img)
                     }}
                 >
-                  <img src={tile.img} style="width: 100%"/>
+                  <img src={tile.title + ".jpg"} style="width: 100%"/>
                 </GridTile>
             ))}
           </GridList>

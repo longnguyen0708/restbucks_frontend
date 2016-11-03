@@ -26,7 +26,8 @@ export default class OrderNew extends React.Component {
         quantity: order.quantity,
         milk: order.milk,
         size: order.size,
-        shots: order.shots
+        shots: order.shots,
+        orderName: OrderStore.getOrder().name
     };
     this.handleSubmit = this.handleSubmit.bind(this);
       this.handleLocationChange = this.handleLocationChange.bind(this);
@@ -107,13 +108,13 @@ export default class OrderNew extends React.Component {
                 <GridTile
                     cols={1}
                     rows={2}>
-                    <img src={sessionStorage.getItem('itemImg')} style={styles.img}/>
+                    <img src={this.state.orderName + ".jpg"} style={styles.img}/>
                 </GridTile>
                 <GridTile
                     cols={1}
                     rows={2}>
                     <div style={styles.options}>
-                        <h2>{sessionStorage.getItem('itemName')}</h2>
+                        <h2>{this.state.orderName}</h2>
                         <table>
                             <tbody>
                             <tr>
